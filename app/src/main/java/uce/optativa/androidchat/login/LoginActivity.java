@@ -1,4 +1,4 @@
-package uce.optativa.androidchat;
+package uce.optativa.androidchat.login;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.widget.ProgressBar;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import uce.optativa.androidchat.R;
 
 public class LoginActivity extends AppCompatActivity {
 

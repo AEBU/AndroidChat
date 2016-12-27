@@ -1,17 +1,13 @@
-package uce.optativa.androidchat;
-
-import android.provider.ContactsContract;
+package uce.optativa.androidchat.domain;
 
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * Created by Alexis on 26/12/2016.
