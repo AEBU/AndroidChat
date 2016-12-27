@@ -2,6 +2,6 @@
     <string name="app_name">AndroidChat</string>
     <string name="login.message.email">Correo electrónico</string>
     <string name="login.message.password">Password</string>
-    <string name="login.message.signin">Iniciar esión</string>
+    <string name="login.message.signin">Iniciar Sesión</string>
     <string name="login.message.signup">Crear cuenta</string>
 </resources>
