@@ -5,11 +5,12 @@ package uce.optativa.androidchat.login;
  */
 
 public class LoginPresenterImpl implements LoginPresenter {
-    LoginView loginView;
-    LoginInteractor loginInteractor;
+    private LoginView loginView;
+    private LoginInteractor loginInteractor;
 
     public LoginPresenterImpl(LoginView loginView){
         this.loginView=loginView;
+        this.loginInteractor = new LoginInteractorImpl();
     }
 
 
