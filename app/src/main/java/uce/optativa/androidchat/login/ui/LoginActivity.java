@@ -66,15 +66,19 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
     */
 
-    @Override
-    public void enableInputs() {
-        setInputs(true);
 
+    @Override
+    @OnClick(R.id.btnSignup)
+    public void handleSignUp() {
+        loginPresenter.registerNewUser(inputEmail.getText().toString(),
+                inputPassword.getText().toString());
     }
 
     @Override
-    public void disableInputs() {
-        setInputs(false);
+    @OnClick(R.id.btnSignin)
+    public void handleSignIn() {
+        loginPresenter.validateLogin(inputEmail.getText().toString(),
+                inputPassword.getText().toString());
     }
 
     @Override
@@ -87,17 +91,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
         progressBar.setVisibility(View.GONE);
     }
 
-    @OnClick(R.id.btnSignup)
     @Override
-    public void handleSignUp() {
-        loginPresenter.registerNewUser(inputEmail.getText().toString(),inputPassword.getText().toString());
-
+    public void disableInputs() {
+        setInputs(false);
     }
 
-    @OnClick(R.id.btnSignin)
     @Override
-    public void handleSignIn() {
-        loginPresenter.validateLogin(inputEmail.getText().toString(),inputPassword.getText().toString());
+    public void enableInputs() {
+        setInputs(true);
+    }
+
+    @Override
+    public void loginError(String error) {
+        inputPassword.setText("");
+        String msgError = String.format(getString(R.string.login_error_message_signin), error);
+        inputPassword.setError(msgError);
     }
 
     @Override
@@ -106,30 +114,21 @@ public class LoginActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void loginError(String error) {
+    public void newUserError(String error) {
         inputPassword.setText("");
-        String msgError= String.format(getString(R.string.login_error_message_signin),error);
+        String msgError = String.format(getString(R.string.login_error_message_signup), error);
         inputPassword.setError(msgError);
     }
 
     @Override
     public void newUserSuccess() {
-        Snackbar.make(container,R.string.login_notice_message_signup,Snackbar.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void newUserError(String error) {
-        inputPassword.setText("");
-        String msgError = String.format(getString(R.string.login_error_message_signup),error);
-        inputPassword.setError(msgError);
-
+        Snackbar.make(container, R.string.login_notice_message_useradded, Snackbar.LENGTH_SHORT).show();
     }
 
     private void setInputs(boolean enabled){
-        inputEmail.setEnabled(enabled);
-        inputPassword.setEnabled(enabled);
-        btnSignIn.setEnabled(enabled);
-        btnSignUp.setEnabled(enabled);
-
+        btnSignIn.setEnabled(true);
+        btnSignUp.setEnabled(true);
+        inputEmail.setEnabled(true);
+        inputPassword.setEnabled(true);
     }
 }

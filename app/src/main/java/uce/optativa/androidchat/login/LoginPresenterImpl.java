@@ -14,14 +14,14 @@ import static uce.optativa.androidchat.login.events.LoginEvent.onFailedToRecover
  */
 
 public class LoginPresenterImpl implements LoginPresenter {
-    private EventBus eventBus;
-    private LoginView loginView;
-    private LoginInteractor loginInteractor;
+     EventBus eventBus;
+     LoginView loginView;
+     LoginInteractor loginInteractor;
 
     public LoginPresenterImpl(LoginView loginView){
         this.loginView=loginView;
+        this.eventBus = GreenRobotEventBus.getInstance();
         this.loginInteractor = new LoginInteractorImpl();
-        this.eventBus= GreenRobotEventBus.getInstance();
     }
 
 
@@ -43,7 +43,7 @@ public class LoginPresenterImpl implements LoginPresenter {
             loginView.disableInputs();
             loginView.showProgress();
         }
-        loginInteractor.checkSession();
+        loginInteractor.checkAlreadyAuthenticated();
     }
 
     @Override
@@ -66,23 +66,22 @@ public class LoginPresenterImpl implements LoginPresenter {
 
     @Override
     public void onEventMainThread(LoginEvent event) {
-        switch (event.getEventType()){
+        switch (event.getEventType()) {
+            case LoginEvent.onSignInError:
+                onSignInError(event.getErrorMessage());
+                break;
             case LoginEvent.onSignInSuccess:
                 onSignInSuccess();
                 break;
             case LoginEvent.onSignUpError:
                 onSignUpError(event.getErrorMessage());
                 break;
-            case LoginEvent.onSignInError:
-                onSignInError(event.getErrorMessage());
-                break;
             case LoginEvent.onSignUpSuccess:
                 onSignUpSuccess();
                 break;
-            case onFailedToRecoverSession:
+            case LoginEvent.onFailedToRecoverSession:
                 onFailedToRecoverSession();
                 break;
-
         }
     }
 
