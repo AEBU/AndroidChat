@@ -5,6 +5,7 @@ import android.util.Log;
 import uce.optativa.androidchat.lib.EventBus;
 import uce.optativa.androidchat.lib.GreenRobotEventBus;
 import uce.optativa.androidchat.login.events.LoginEvent;
+import uce.optativa.androidchat.login.ui.LoginView;
 
 import static uce.optativa.androidchat.login.events.LoginEvent.onFailedToRecoverSession;
 

@@ -1,4 +1,4 @@
-package uce.optativa.androidchat.login;
+package uce.optativa.androidchat.login.ui;
 
 /**
  * Created by Alexis on 26/12/2016.

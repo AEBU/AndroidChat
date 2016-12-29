@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "92754785746",
+    "firebase_url": "https://computronik-df64d.firebaseio.com",
+    "project_id": "computronik-df64d",
+    "storage_bucket": "computronik-df64d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92754785746:android:7b7ee5775659d124",
+        "android_client_info": {
+          "package_name": "uce.optativa.androidchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92754785746-rndjbfjqlf2g5aa69a5glpkln020als1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDECF5LoP-9kqq9IIoMo0PNlMwuEMta5MI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
