@@ -9,16 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uce.optativa.androidchat.R;
-import uce.optativa.androidchat.contactlist.ContactListActivity;
+import uce.optativa.androidchat.contactlist.ui.ui.ContactListActivity;
 import uce.optativa.androidchat.login.LoginPresenter;
 import uce.optativa.androidchat.login.LoginPresenterImpl;
-import uce.optativa.androidchat.login.ui.LoginView;
 
 public class LoginActivity extends AppCompatActivity implements LoginView {
 
