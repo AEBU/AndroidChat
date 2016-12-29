@@ -2,6 +2,8 @@ package uce.optativa.androidchat.login;
 
 import android.util.Log;
 
+import org.greenrobot.eventbus.Subscribe;
+
 import uce.optativa.androidchat.lib.EventBus;
 import uce.optativa.androidchat.lib.GreenRobotEventBus;
 import uce.optativa.androidchat.login.events.LoginEvent;
@@ -65,6 +67,7 @@ public class LoginPresenterImpl implements LoginPresenter {
     }
 
     @Override
+    @Subscribe
     public void onEventMainThread(LoginEvent event) {
         switch (event.getEventType()) {
             case LoginEvent.onSignInError:
