@@ -14,7 +14,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import uce.optativa.androidchat.R;
-import uce.optativa.androidchat.contactlist.ui.ui.ContactListActivity;
+import uce.optativa.androidchat.contactlist.ui.ContactListActivity;
 import uce.optativa.androidchat.login.LoginPresenter;
 import uce.optativa.androidchat.login.LoginPresenterImpl;
 
