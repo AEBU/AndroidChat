@@ -45,6 +45,7 @@ dependencies {
     compile "org.greenrobot:eventbus:$rootProject.ext.eventbusVersion"
     compile 'com.firebase:firebase-client-android:2.5.0+'
 
+    compile 'com.android.support.test.espresso:espresso-core:2.2.2'
 }
 
 apply plugin: 'com.google.gms.google-services'
