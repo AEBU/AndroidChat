@@ -1,10 +1,10 @@
 package uce.optativa.androidchat.contactlist;
 
-import com.firebase.client.ChildEventListener;
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
 
 import uce.optativa.androidchat.contactlist.events.ContactListEvent;
 import uce.optativa.androidchat.domain.FirebaseHelper;
@@ -23,7 +23,6 @@ public class ContactListRepositoryImpl implements ContactListRepository {
     private ChildEventListener contactEventListener;
 
     public ContactListRepositoryImpl() {
-        this.eventBus= GreenRobotEventBus.getInstance();
         this.helper=FirebaseHelper.getInstance();
     }
 
@@ -81,11 +80,14 @@ public class ContactListRepositoryImpl implements ContactListRepository {
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
 
             @Override
-            public void onCancelled(FirebaseError firebaseError) {}
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+
         };
         }
-        helper.getMyContactsReference().addChildEventListener((com.google.firebase.database.ChildEventListener) contactEventListener);
-    }
+        helper.getMyContactsReference().addChildEventListener(contactEventListener);    }
 
     private void handleContact(DataSnapshot dataSnapshot, int type) {
         String email= dataSnapshot.getKey();
@@ -101,6 +103,7 @@ public class ContactListRepositoryImpl implements ContactListRepository {
         ContactListEvent event= new ContactListEvent();
         event.setEventType(type);
         event.setUser(user);
+        EventBus eventBus = GreenRobotEventBus.getInstance();
         eventBus.post(event);
 
     }
@@ -109,7 +112,7 @@ public class ContactListRepositoryImpl implements ContactListRepository {
     @Override
     public void unsubscribeToContactListEvents() {
         if (contactEventListener != null){
-            helper.getMyContactsReference().removeEventListener((com.google.firebase.database.ChildEventListener) contactEventListener);
+            helper.getMyContactsReference().removeEventListener(contactEventListener);
         }
     }
 
