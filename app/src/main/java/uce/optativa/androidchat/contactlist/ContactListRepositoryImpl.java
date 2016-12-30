@@ -1,6 +1,6 @@
 package uce.optativa.androidchat.contactlist;
 
-import com.firebase.client.FirebaseError;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
