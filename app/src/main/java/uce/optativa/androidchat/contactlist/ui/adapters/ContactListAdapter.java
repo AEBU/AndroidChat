@@ -13,7 +13,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import uce.optativa.androidchat.R;
+import uce.optativa.androidchat.domain.AvatarHelper;
 import uce.optativa.androidchat.entities.User;
+import uce.optativa.androidchat.lib.ImageLoader;
 
 /**
  * Created by Alexis on 29/12/2016.
@@ -23,12 +25,12 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
 
 
     private List<User> contactList;
-    private ImageLoading imageLoader;
+    private ImageLoader imageLoader;
     private OnItemClickListener clickListener;
 
-    public ContactListAdapter(List<User> contactList, ImageLoading imageLoading, OnItemClickListener clickListener) {
+    public ContactListAdapter(List<User> contactList, ImageLoader imageLoader, OnItemClickListener clickListener) {
         this.contactList = contactList;
-        this.imageLoader = imageLoading;
+        this.imageLoader = imageLoader;
         this.clickListener = clickListener;
     }
 
@@ -53,7 +55,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         holder.txtStatus.setText(status);
         holder.txtStatus.setTextColor(color);
 
-        imageLoader.load(holder.imgAvatar, "");
+        imageLoader.load(holder.imgAvatar, AvatarHelper.getAvatarUrl(email));
     }
 
     @Override
@@ -73,7 +75,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this,itemView);
-            this.view= view;
+            this.view= itemView;
         }
         public void setClickListener(final User user,
                                      final OnItemClickListener listener) {
