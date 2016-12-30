@@ -19,7 +19,7 @@ public class ContactListPresenterImpl implements ContactListPresenter {
     private ContactListSessionInteractor sessionInteractor;
 
     public ContactListPresenterImpl(ContactListView view){
-        this.eventBus = GreenRobotEventBus.getInstance();
+        eventBus = GreenRobotEventBus.getInstance();
         this.view = view;
         this.listInteractor = new ContactListInteractorImpl();
         this.sessionInteractor = new ContactListSessionInteractorImpl();
@@ -71,7 +71,7 @@ public class ContactListPresenterImpl implements ContactListPresenter {
     @Override
     @Subscribe
     public void onEventMainThread(ContactListEvent event) {
-User user = event.getUser();
+        User user = event.getUser();
         switch (event.getEventType()){
             case ContactListEvent.onContactAdded:
                 onContactAdded(user);
