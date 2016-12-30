@@ -10,5 +10,4 @@ public interface ContactListSessionInteractor {
     String getCurrentUserEmail();
     void changeConnectionStatus(boolean online);
 
-
 }
