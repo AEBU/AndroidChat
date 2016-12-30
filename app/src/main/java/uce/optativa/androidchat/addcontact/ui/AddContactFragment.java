@@ -99,10 +99,11 @@ public class AddContactFragment extends DialogFragment implements AddContactView
     }
 
     @Override
-    public void contactNoAdded() {
+    public void contactNotAdded() {
         editTxtEmail.setText("");
         editTxtEmail.setError(getString(R.string.addcontact_error_message));
     }
+
 
     @Override
     public void onDestroyView() {
