@@ -1,8 +1,7 @@
-package uce.optativa.androidchat.chat;
+package uce.optativa.androidchat.chat.ui;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,18 +11,22 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import uce.optativa.androidchat.R;
+import uce.optativa.androidchat.chat.ui.adapters.ChatAdapter;
+import uce.optativa.androidchat.chat.ChatPresenter;
+import uce.optativa.androidchat.chat.ChatPresenterImpl;
 import uce.optativa.androidchat.domain.AvatarHelper;
 import uce.optativa.androidchat.entities.ChatMessage;
 import uce.optativa.androidchat.lib.GlideImageLoader;
 import uce.optativa.androidchat.lib.ImageLoader;
 
-import static android.os.Build.VERSION_CODES.M;
-
-public class ChatActivity extends AppCompatActivity implements  ChatView{
+public class ChatActivity extends AppCompatActivity implements ChatView {
 
     @Bind(R.id.imgAvatar)
     CircleImageView imgAvatar;
@@ -62,9 +65,20 @@ public class ChatActivity extends AppCompatActivity implements  ChatView{
     }
 
     private void setupAdapter() {
+        ChatMessage msg1= new ChatMessage();
+        ChatMessage msg2= new ChatMessage();
+
+        msg1.setMsg("hola!");
+        msg2.setMsg("Como te va!");
+        msg1.setSentByMe(true);
+        msg2.setSentByMe(false);
+        //new ArrayList<ChatMessage>()
+        adapter= new ChatAdapter(this, Arrays.asList(new ChatMessage[]{msg1,msg2}));
     }
+
     private void setupRecyclerView() {
         messageRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        messageRecyclerView.setAdapter(adapter);
     }
     private void setupToolbar(Intent i ) {
         String recipient=i.getStringExtra(EMAIL_KEY);

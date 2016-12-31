@@ -1,6 +1,7 @@
 package uce.optativa.androidchat.chat;
 
 import uce.optativa.androidchat.chat.events.ChatEvent;
+import uce.optativa.androidchat.chat.ui.ChatView;
 
 /**
  * Created by Alexis on 30/12/2016.

@@ -1,4 +1,4 @@
-package uce.optativa.androidchat.chat;
+package uce.optativa.androidchat.chat.ui;
 
 import uce.optativa.androidchat.entities.ChatMessage;
 
