@@ -16,6 +16,7 @@ import java.util.Arrays;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import uce.optativa.androidchat.R;
 import uce.optativa.androidchat.chat.ui.adapters.ChatAdapter;
@@ -40,8 +41,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     RecyclerView messageRecyclerView;
     @Bind(R.id.editTxtMessage)
     EditText editTxtMessage;
-    @Bind(R.id.btnSendMessage)
-    ImageButton btnSendMessage;
+
 
 
     public final static String EMAIL_KEY = "email";
@@ -56,24 +56,29 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
         ButterKnife.bind(this);
-        setupAdapter();
-        setupRecyclerView();
 
         chatPresenter= new ChatPresenterImpl(this);
         chatPresenter.onCreate();
-        setupToolbar(getIntent());
+
+        setSupportActionBar(toolbar);
+        Intent intent = getIntent();
+        setupToolbar(intent);
+
+        setupAdapter();
+        setupRecyclerView();
     }
 
     private void setupAdapter() {
-        ChatMessage msg1= new ChatMessage();
+        /*ChatMessage msg1= new ChatMessage();
         ChatMessage msg2= new ChatMessage();
 
         msg1.setMsg("hola!");
         msg2.setMsg("Como te va!");
         msg1.setSentByMe(true);
         msg2.setSentByMe(false);
+        */
         //new ArrayList<ChatMessage>()
-        adapter= new ChatAdapter(this, Arrays.asList(new ChatMessage[]{msg1,msg2}));
+        adapter = new ChatAdapter(this, new ArrayList<ChatMessage>());
     }
 
     private void setupRecyclerView() {
@@ -96,6 +101,7 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
         ImageLoader imageLoader=new  GlideImageLoader(getApplicationContext());
 
         imageLoader.load(imgAvatar, AvatarHelper.getAvatarUrl(recipient));
+        setSupportActionBar(toolbar);
 
     }
 
@@ -121,5 +127,11 @@ public class ChatActivity extends AppCompatActivity implements ChatView {
     public void onMessageReceived(ChatMessage msg) {
         adapter.add(msg);
         messageRecyclerView.scrollToPosition(adapter.getItemCount() - 1);
+    }
+
+    @OnClick(R.id.btnSendMessage)
+    public void sendMessage(){
+        chatPresenter.sendMessage(editTxtMessage.getText().toString());
+        editTxtMessage.setText("");
     }
 }
